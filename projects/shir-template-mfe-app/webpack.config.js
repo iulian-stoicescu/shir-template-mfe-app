@@ -2,10 +2,11 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 
 module.exports = withModuleFederationPlugin({
 
-  name: 'mfe1',
+  name: 'shir-template-mfe-app',
 
   exposes: {
-    './Component': './projects/mfe1/src/app/app.component.ts',
+    './ExposedModule': './projects/shir-template-mfe-app/src/app/modules/exposed/exposed.module.ts',
+    './ExposedComponent': './projects/shir-template-mfe-app/src/app/components/exposed/exposed.component.ts'
   },
 
   shared: {
