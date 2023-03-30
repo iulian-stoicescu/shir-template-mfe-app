@@ -1,27 +1,29 @@
 # ShirTemplateMfeApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.10.
+### What is this app
 
-## Development server
+This is a dummy example of a `mfe` (aka remote) application in the context of Module Federation,
+written in Angular 14.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### How was this app generated
 
-## Code scaffolding
+To generate this application and the default setup for module federation, the following commands
+were ran:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- `ng new shir-template-mfe-app --create-application="false"`
+- `cd shir-template-mfe-app`
+- `ng g application shir-template-mfe-app --routing=true --style=scss`
+- `ng add @angular-architects/module-federation@^14.3.0 --project shir-template-mfe-app --port 5001 --type remote`
 
-## Build
+Eventually other code changes were done manually and the commit messages can be observed for a
+detailed description.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### What does this app
 
-## Running unit tests
+It exposes a component (`ExposedComponent`) and a module (`ExposedModule`) in
+the `webpack.config.js` file. These are resources that could be consumed by a `host` (aka shell)
+application.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The port that this application is running on is `5001`. So in order to be able to consume the
+exposed resources, the `host` application will have to connect
+to `http://localhost:5001/remoteEntry.js`.
